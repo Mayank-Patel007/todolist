@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from "react"
 import './App.css';
 
 function App() {
+  const [cities, setCities] = useState([])
+  const [cities1, setCities1] = useState("")
+  function show() {
+    setCities([...cities, cities1])
+    setCities1("")
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className="box">
+    <h1>TO-DO LIST</h1>
+    <div className="container">
+        <input type="text" value={cities1} onChange={(e) => setCities1(e.target.value)} placeholder="add city" />
+        <button onClick={show}>Add</button>
+        </div>
+        <div className="list">
+          {cities.map((city, index) =>
+        (<ul><li key="index">{city}</li></ul>
+        ))}
+        </div>
+       
+      
     </div>
-  );
+  </>
+  )
 }
-
 export default App;
